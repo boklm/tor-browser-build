@@ -21,7 +21,7 @@ do
        /home/yubihsm/osslsigncode/osslsigncode \
                  -pkcs11engine /usr/lib/engines/engine_pkcs11.so \
                  -pkcs11module /usr/local/lib/yubihsm_pkcs11.so \
-                 -pass "$YUBIPASS" \
+                 -pass "'$YUBIPASS'" \
                  -h sha256 \
                  -certs /home/yubihsm/tpo-cert.crt \
                  -key 1c40 \
