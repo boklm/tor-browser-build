@@ -26,7 +26,7 @@ do
                  -certs /home/yubihsm/tpo-cert.crt \
                  -key 1c40 \
                  "$cwd/$i" "$tmpdir/$i" \
-                 | sudo su - yubishm
+                 | sudo su - yubihsm
   mv -vf "$tmpdir/$i" "$cwd/$i"
 done
 
