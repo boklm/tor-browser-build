@@ -16,6 +16,8 @@ echo
 test -f "$steps_dir/linux-signer-signmars.done" ||
   read -sp "Enter nssdb7 (mar signing) passphrase: " NSSPASS
 echo
+test -f "$steps_dir/linux-signer-authenticode-signing" ||
+  read -sp "Enter windows authenticode (yubihsm) passphrase: " YUBIPASS
 test -f "$steps_dir/linux-signer-gpg-sign" ||
   read -sp "Enter gpg passphrase: " GPG_PASS
 echo
@@ -83,6 +85,14 @@ function download-unsigned-sha256sums-gpg-signatures-from-people-tpo {
   "$script_dir/download-unsigned-sha256sums-gpg-signatures-from-people-tpo"
 }
 
+function linux-signer-authenticode-signing {
+  ssh "$ssh_host_linux_signer" 'bash -s' << EOF
+  export YUBIPASS=$YUBIPASS
+  ~/signing-$tbb_version_type/linux-signer-authenticode-signing
+EOF
+  unset YUBIPASS
+}
+
 function windows-signing {
   echo "Windows signing is not implemented in this script yet." 1>&2
   echo "You need to do it manually (authenticode-signing and authenticode-timestamping)" 1>&2
@@ -145,6 +155,7 @@ do_step dmg2mar
 do_step sync-scripts-to-linux-signer
 do_step linux-signer-signmars
 do_step sync-after-signmars
+do_step linux-signer-authenticode-signing
 
 # TODO: implement windows-signing part
 do_step windows-signing
