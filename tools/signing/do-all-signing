@@ -16,10 +16,10 @@ echo
 test -f "$steps_dir/linux-signer-signmars.done" ||
   read -sp "Enter nssdb7 (mar signing) passphrase: " NSSPASS
 echo
-test -f "$steps_dir/linux-signer-authenticode-signing" ||
+test -f "$steps_dir/linux-signer-authenticode-signing.done" ||
   read -sp "Enter windows authenticode (yubihsm) passphrase: " YUBIPASS
 echo
-test -f "$steps_dir/linux-signer-gpg-sign" ||
+test -f "$steps_dir/linux-signer-gpg-sign.done" ||
   read -sp "Enter gpg passphrase: " GPG_PASS
 echo
 
