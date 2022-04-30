@@ -18,6 +18,7 @@ test -f "$steps_dir/linux-signer-signmars.done" ||
 echo
 test -f "$steps_dir/linux-signer-authenticode-signing" ||
   read -sp "Enter windows authenticode (yubihsm) passphrase: " YUBIPASS
+echo
 test -f "$steps_dir/linux-signer-gpg-sign" ||
   read -sp "Enter gpg passphrase: " GPG_PASS
 echo
