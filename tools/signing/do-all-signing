@@ -87,7 +87,7 @@ function download-unsigned-sha256sums-gpg-signatures-from-people-tpo {
 
 function linux-signer-authenticode-signing {
   ssh "$ssh_host_linux_signer" 'bash -s' << EOF
-  export YUBIPASS=$YUBIPASS
+  export YUBIPASS='$YUBIPASS'
   ~/signing-$tbb_version_type/linux-signer-authenticode-signing
 EOF
   unset YUBIPASS
