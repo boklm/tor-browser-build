@@ -94,11 +94,16 @@ EOF
   unset YUBIPASS
 }
 
-function windows-signing {
-  echo "Windows signing is not implemented in this script yet." 1>&2
-  echo "You need to do it manually (authenticode-signing and authenticode-timestamping)" 1>&2
-  echo "and then touch file $steps_dir/windows-signing.done" 1>&2
-  exit 1
+function sync-after-authenticode-signing {
+  "$script_dir/sync-linux-signer-to-local"
+}
+
+function authenticode-timestamping {
+  "$script_dir/authenticode-timestamping.sh"
+}
+
+function sync-after-authenticode-timestamping {
+  "$script_dir/sync-local-to-linux-signer"
 }
 
 function hash_signed_bundles {
@@ -157,10 +162,9 @@ do_step sync-scripts-to-linux-signer
 do_step linux-signer-signmars
 do_step sync-after-signmars
 do_step linux-signer-authenticode-signing
-
-# TODO: implement windows-signing part
-do_step windows-signing
-
+do_step sync-after-authenticode-signing
+do_step authenticode-timestamping
+do_step sync-after-authenticode-timestamping
 do_step hash_signed_bundles
 do_step sync-after-hash
 do_step linux-signer-gpg-sign
