@@ -20,7 +20,7 @@ pushd mobile/android/fenix
 # Use the Android Components we have just built
 echo autoPublish.android-components.dir=../android-components > local.properties
 
-[% IF c('var/has_l10n') -%]
+[% IF c('var/has_l10n') && !c('var/firefox-browser') -%]
   tar -C $distdir -xf $rootdir/[% c('input_files_by_name/translation-fenix') %]
   # Add our localized strings
   supported_locales="[% tmpl(c('var/locales_mobile').join(' ')) %]"
