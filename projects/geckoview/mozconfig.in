@@ -1,4 +1,20 @@
+[% IF !c("var/firefox-browser") -%]
 . $topsrcdir/[% c("var/mozconfig_file") %]
+[% ELSE -%]
+  ac_add_options --enable-application=mobile/android
+[% END -%]
+
+# Make sure to disable bootstrap also when running online builds for dependency
+# updates.
+ac_add_options --disable-bootstrap
+
+CC="clang"
+CXX="clang++"
+ac_add_options --enable-linker=lld
+
+ac_add_options --with-android-sdk=$ANDROID_HOME
+ac_add_options --with-android-ndk=$ANDROID_NDK_HOME
+ac_add_options --with-gradle=$GRADLE_HOME/bin/gradle
 
 ac_add_options --with-java-bin-path=/usr/lib/jvm/java-1.17.0-openjdk-amd64/bin
 
