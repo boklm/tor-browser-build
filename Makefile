@@ -548,13 +548,22 @@ mullvadbrowser-compare-mar-signed-unsigned-alpha: submodule-update
 #############################
 
 firefox-linux-x86_64: submodule-update
-	$(rbm) build firefox --target alpha --target linux-x86_64 --target linux --target firefoxbrowser
+	$(rbm) build firefox --target alpha --target firefoxbrowser-linux-x86_64
+
+firefox-linux-aarch64: submodule-update
+	$(rbm) build firefox --target alpha --target firefoxbrowser-linux-arch64
 
 firefox-windows-x86_64: submodule-update
-	$(rbm) build firefox --target alpha --target windows-x86_64 --target windows --target firefoxbrowser
+	$(rbm) build firefox --target alpha --target firefoxbrowser-windows-x86_64
+
+firefox-windows-i686: submodule-update
+	$(rbm) build firefox --target alpha --target firefoxbrowser-windows-i686
 
 firefox-macos-aarch64: submodule-update
-	$(rbm) build firefox --target alpha --target macos-aarch64 --target macos --target firefoxbrowser
+	$(rbm) build firefox --target alpha --target firefoxbrowser-macos-aarch64
+
+firefox-macos-x86_64: submodule-update
+	$(rbm) build firefox --target alpha --target firefoxbrowser-macos-x86_64
 
 geckoview-android: submodule-update
 	$(rbm) build geckoview --step build_apk --target alpha --target android-aarch64 --target android --target firefoxbrowser
