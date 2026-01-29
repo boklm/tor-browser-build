@@ -101,6 +101,8 @@ targets:
   firefoxbrowser:
     git_hash: '[% c("var/upstream_firefox_commit") %]'
     tag_gpg_id: 0
+    var:
+      updater_url: ''
 
   basebrowser:
     var:
