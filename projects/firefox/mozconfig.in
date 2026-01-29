@@ -83,7 +83,9 @@
 [% END -%]
 
 ac_add_options --[% IF c("var/updater_enabled") %]enable[% ELSE %]disable[% END %]-updater
-ac_add_options --[% IF c("var/updater_enabled") %]enable[% ELSE %]disable[% END %]-base-browser-update
+[% IF !c("var/firefox-browser") -%]
+  ac_add_options --[% IF c("var/updater_enabled") %]enable[% ELSE %]disable[% END %]-base-browser-update
+[% END -%]
 [% IF c("var/override_updater_url") -%]
   ac_add_options --with-updater-url=[% c("var/override_updater_url") %]
 [% ELSIF c("var/updater_url")  -%]
