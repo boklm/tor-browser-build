@@ -103,6 +103,7 @@ targets:
     tag_gpg_id: 0
     var:
       updater_url: ''
+      has_l10n: 0
 
   basebrowser:
     var:
